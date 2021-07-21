@@ -1,17 +1,21 @@
 .table {
-  display: grid;
-  grid-template-columns: 172px repeat(auto-fit, minmax(100px, 1fr));
+  font-family: "IBM Plex Mono", sans-serif;
   border: 1px solid #e6ebf0;
+
+  &__row {
+    display: grid;
+    grid-template-columns: 172px repeat(auto-fit, minmax(100px, 1fr));
+    height: 48px;
+  }
 
   &__title {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 48px;
-    background: rgba(240, 242, 244, 0.5);
+    word-break: break-all;
+    padding: 10px;
+    background-color: rgba(240, 242, 244, 0.5);
     box-shadow: inset -1px 0px 0px rgba(198, 209, 221, 0.5);
-    font-family: "IBM Plex Mono", sans-serif;
-    font-weight: 500;
     font-size: 12px;
     line-height: 16px;
     color: #7b8395;

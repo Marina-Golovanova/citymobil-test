@@ -15,16 +15,18 @@ export const Table: React.FC = () => {
 
   return (
     <div className="table">
-      {data && (
-        <>
-          <div className="table__title">Марка и модель</div>
-          {data.tariffsList.map((el) => (
-            <div className="table__title" key={el}>
-              {el}
-            </div>
-          ))}
-        </>
-      )}
+      <div className="table__row">
+        {data && (
+          <>
+            <div className="table__title">Марка и модель</div>
+            {data.tariffsList.map((el) => (
+              <div className="table__title" key={el}>
+                {el}
+              </div>
+            ))}
+          </>
+        )}
+      </div>
     </div>
   );
 };
