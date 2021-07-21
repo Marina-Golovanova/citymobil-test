@@ -1,7 +1,7 @@
 .page-layout {
   display: grid;
   grid-template-rows: 128px 1fr 128px;
-  grid-template-columns: 224px 1fr;
+  grid-template-columns: minmax(150px, 15%) 85%;
   grid-template-areas:
     "hd hd"
     "sd main"

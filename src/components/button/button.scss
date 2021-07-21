@@ -1,0 +1,19 @@
+.button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 68px;
+  background-color: #7b8395;
+  font-family: "IBM Plex Mono", sans-serif;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 16px;
+  color: #ffffff;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s;
+
+  &:hover {
+    background-color: #5c6475;
+  }
+}

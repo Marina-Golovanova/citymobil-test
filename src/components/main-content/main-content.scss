@@ -1,4 +1,11 @@
 .main-content {
-  grid-area: "main";
+  grid-area: main;
   background-color: #fff;
+  padding: 32px;
+
+  &__search {
+    display: flex;
+    gap: 8px;
+    height: 42px;
+  }
 }
