@@ -1,6 +1,7 @@
 import React from "react";
 import { InputSearch } from "../input-search/InputSearch";
 import { Button } from "../button/Button";
+import { Table } from "../table/Table";
 
 import "./main-content.scss";
 
@@ -11,6 +12,7 @@ export const MainContent: React.FC = () => {
         <InputSearch />
         <Button text="Найти" onButton={() => {}} />
       </div>
+      <Table />
     </div>
   );
 };
