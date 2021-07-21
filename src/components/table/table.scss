@@ -1,11 +1,12 @@
 .table {
   font-family: "IBM Plex Mono", sans-serif;
   border: 1px solid #e6ebf0;
+  overflow: auto;
 
   &__row {
     display: grid;
     grid-template-columns: 172px repeat(auto-fit, minmax(100px, 1fr));
-    height: 48px;
+    min-height: 48px;
   }
 
   &__title {
@@ -19,5 +20,22 @@
     font-size: 12px;
     line-height: 16px;
     color: #7b8395;
+  }
+
+  &__cell {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-left: 16px;
+    padding-right: 16px;
+    font-size: 13px;
+    line-height: 1.5em;
+    font-weight: 300;
+    box-shadow: inset -1px 0px 0px rgba(198, 209, 221, 0.5),
+      inset 0px -1px 0px rgba(198, 209, 221, 0.5);
+
+    &:first-child {
+      justify-content: flex-start;
+    }
   }
 }

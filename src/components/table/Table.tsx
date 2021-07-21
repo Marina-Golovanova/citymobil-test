@@ -33,6 +33,17 @@ export const Table: React.FC = () => {
           </>
         )}
       </div>
+      {data &&
+        data.cars.map((el) => (
+          <div className="table__row" key={`${el.mark} ${el.model}`}>
+            <div className="table__cell">{`${el.mark} ${el.model}`}</div>
+            {data.tariffsList.map((tariff) => (
+              <div className="table__cell" key={tariff}>
+                {el.tariffs[tariff.toLowerCase()]?.year || "—"}
+              </div>
+            ))}
+          </div>
+        ))}
     </div>
   );
 };

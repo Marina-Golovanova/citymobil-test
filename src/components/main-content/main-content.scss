@@ -2,6 +2,14 @@
   grid-area: main;
   background-color: #fff;
   padding: 32px;
+  padding-top: 0;
+
+  &__search-layout {
+    position: sticky;
+    top: 0;
+    padding-top: 32px;
+    background-color: #fff;
+  }
 
   &__search {
     display: flex;

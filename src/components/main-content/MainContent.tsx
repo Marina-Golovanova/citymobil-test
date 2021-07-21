@@ -8,9 +8,11 @@ import "./main-content.scss";
 export const MainContent: React.FC = () => {
   return (
     <div className="main-content">
-      <div className="main-content__search">
-        <InputSearch />
-        <Button text="Найти" onButton={() => {}} />
+      <div className="main-content__search-layout">
+        <div className="main-content__search">
+          <InputSearch />
+          <Button text="Найти" onButton={() => {}} />
+        </div>
       </div>
       <Table />
     </div>
