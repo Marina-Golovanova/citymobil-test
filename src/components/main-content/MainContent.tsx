@@ -33,7 +33,7 @@ export const MainContent: React.FC = () => {
     <div className="main-content">
       <div className="main-content__search-layout">
         <div className="main-content__search">
-          <InputSearch onInput={onInput} />
+          <InputSearch onInput={onInput} onEnter={onSearch} />
           <Button text="Найти" onButton={onSearch} />
         </div>
       </div>

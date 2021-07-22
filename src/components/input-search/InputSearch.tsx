@@ -2,17 +2,29 @@ import React from "react";
 
 import "./input-search.scss";
 
-type InputSearchProps = { onInput: (search: string) => void };
+type InputSearchProps = {
+  onInput: (search: string) => void;
+  onEnter: (search: string) => void;
+};
 
 export const InputSearch: React.FC<InputSearchProps> = (props) => {
   const [inputValue, setInputValue] = React.useState("");
+  const { onInput } = props;
 
   const onChangeInput = (e: React.ChangeEvent) => {
     const target = e.target as HTMLInputElement;
-    setInputValue(target.value);
+    setInputValue(target.value.toLowerCase());
   };
 
-  props.onInput(inputValue.toLowerCase());
+  React.useEffect(() => {
+    onInput(inputValue);
+  }, [inputValue, onInput]);
+
+  const onKeyPress = (e: React.KeyboardEvent) => {
+    if (e.key === "Enter") {
+      props.onEnter(inputValue);
+    }
+  };
 
   return (
     <div className="input-layout">
@@ -20,6 +32,7 @@ export const InputSearch: React.FC<InputSearchProps> = (props) => {
         className="input-layout__field"
         placeholder="Поиск"
         onChange={onChangeInput}
+        onKeyPress={onKeyPress}
       />
       <svg className="input-layout__icon" viewBox="0 0 16 16" fill="none">
         <path

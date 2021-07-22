@@ -27,10 +27,8 @@ export const Table: React.FC<TableProps> = (props) => {
     data && props.search
       ? {
           ...data,
-          cars: data.cars.filter(
-            (car) =>
-              car.mark.toLowerCase().includes(props.search) ||
-              car.model.toLowerCase().includes(props.search)
+          cars: data.cars.filter((car) =>
+            `${car.mark} ${car.model}`.toLowerCase().includes(props.search)
           ),
         }
       : data;
