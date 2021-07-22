@@ -8,6 +8,8 @@ import "./main-content.scss";
 
 export const MainContent: React.FC = () => {
   const [showButtonForScroll, setShowButtonToScroll] = React.useState(false);
+  const [search, setSearch] = React.useState<string>("");
+  const [searchValue, setSearchValue] = React.useState("");
 
   window.onscroll = () => {
     window.scrollY > 300
@@ -15,15 +17,27 @@ export const MainContent: React.FC = () => {
       : setShowButtonToScroll(false);
   };
 
+  const onSearch = () => {
+    setSearchValue(search);
+  };
+
+  const onInput = (search: string) => {
+    if (!search) {
+      setSearchValue("");
+    } else {
+      setSearch(search);
+    }
+  };
+
   return (
     <div className="main-content">
       <div className="main-content__search-layout">
         <div className="main-content__search">
-          <InputSearch />
-          <Button text="Найти" onButton={() => {}} />
+          <InputSearch onInput={onInput} />
+          <Button text="Найти" onButton={onSearch} />
         </div>
       </div>
-      <Table />
+      <Table search={searchValue} />
       {showButtonForScroll && <ScrollToTopButton />}
     </div>
   );
