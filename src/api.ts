@@ -1,11 +1,10 @@
 import camelcase from "camelcase-keys";
 import { Data } from "./type";
-
-const baseUrl = "https://city-mobil.ru/api/cars";
+import { SERVER_URL } from "./constants";
 
 export const api = {
   getCars: async (): Promise<Data> => {
-    const res = await fetch(baseUrl);
+    const res = await fetch(`${SERVER_URL}/api/cars`);
 
     if (res.ok) {
       const data = await res.json();
