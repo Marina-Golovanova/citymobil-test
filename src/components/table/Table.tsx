@@ -13,10 +13,9 @@ type TableProps = {
 
 export const Table: React.FC<TableProps> = (props) => {
   const [data, setData] = React.useState<Data>();
-  const [sortKey, setSortKey] = React.useState("");
-  const [sortByAsc, setSortByAsc] = React.useState(false);
+  const [sortKey, setSortKey] = React.useState("mark");
+  const [sortByAsc, setSortByAsc] = React.useState(true);
   const [filteredData, setFilteredData] = React.useState<Data>();
-  //const [chosenCar, setChosenCar] = React.useState<Car>();
 
   const { addToast } = useToasts();
 
@@ -29,102 +28,34 @@ export const Table: React.FC<TableProps> = (props) => {
       .catch((e) => addToast(e.message, { appearance: "error" }));
   }, [addToast]);
 
-  React.useEffect(
-    () =>
-      setFilteredData(
-        data && props.search
-          ? {
-              ...data,
-              cars: data.cars.filter((car) =>
-                `${car.mark} ${car.model}`.toLowerCase().includes(props.search)
-              ),
-            }
-          : data
-      ),
-    [data, props.search]
-  );
+  React.useEffect(() => {
+    if (!data) {
+      return;
+    }
 
-  //   const onSort = () => {
-  //     if (filteredData) {
-  //       //debugger;
-  //       if (sortKey === "mark" && sortByAsc) {
-  //         setFilteredData({
-  //           ...filteredData,
-  //           cars: filteredData.cars.sort((a, b) => (a.mark > b.mark ? 1 : -1)),
-  //         });
-  //       } else if (sortKey === "mark" && !sortByAsc) {
-  //         setFilteredData({
-  //           ...filteredData,
-  //           cars: filteredData.cars.sort((a, b) => (a.mark > b.mark ? -1 : 1)),
-  //         });
-  //       } else if (sortKey !== "mark" && sortByAsc) {
-  //         setFilteredData({
-  //           ...filteredData,
-  //           cars: filteredData.cars.sort((a, b) =>
-  //             (a.tariffs[sortKey] ? a.tariffs[sortKey].year : 0) >
-  //             (b.tariffs[sortKey] ? b.tariffs[sortKey].year : 0)
-  //               ? 1
-  //               : -1
-  //           ),
-  //         });
-  //       } else if (sortKey !== "mark" && !sortByAsc) {
-  //         setFilteredData({
-  //           ...filteredData,
-  //           cars: filteredData.cars.sort((a, b) =>
-  //             (a.tariffs[sortKey] ? a.tariffs[sortKey].year : 0) >
-  //             (b.tariffs[sortKey] ? b.tariffs[sortKey].year : 0)
-  //               ? -1
-  //               : 1
-  //           ),
-  //         });
-  //       }
-  //     }
-  //   };
+    const sortedData = { ...data };
+
+    if (props.search) {
+      sortedData.cars = sortedData.cars.filter((car) =>
+        `${car.mark} ${car.model}`.toLowerCase().includes(props.search)
+      );
+    }
+
+    sortedData.cars = sortedData.cars.sort((a, b) => {
+      const dir = sortByAsc ? 1 : -1;
+
+      return sortKey === "mark"
+        ? (a.mark > b.mark ? 1 : -1) * dir
+        : (a.tariffs[sortKey]?.year > b.tariffs[sortKey]?.year ? 1 : -1) * dir;
+    });
+
+    setFilteredData(sortedData);
+  }, [data, props.search, sortByAsc, sortKey]);
 
   const onTitleClick = async (title: string) => {
-    if (title !== sortKey) {
-      setSortByAsc(true);
-    } else {
-      setSortByAsc(!sortByAsc);
-    }
+    setSortByAsc(!sortByAsc);
     setSortKey(title);
   };
-
-  React.useEffect(() => {
-    if (data) {
-      if (sortKey === "mark" && sortByAsc) {
-        setFilteredData({
-          ...data,
-          cars: data.cars.sort((a, b) => (a.mark > b.mark ? 1 : -1)),
-        });
-      } else if (sortKey === "mark" && !sortByAsc) {
-        setFilteredData({
-          ...data,
-          cars: data.cars.sort((a, b) => (a.mark > b.mark ? -1 : 1)),
-        });
-      } else if (sortKey !== "mark" && sortByAsc) {
-        setFilteredData({
-          ...data,
-          cars: data.cars.sort((a, b) =>
-            (a.tariffs[sortKey] ? a.tariffs[sortKey].year : 0) >
-            (b.tariffs[sortKey] ? b.tariffs[sortKey].year : 0)
-              ? 1
-              : -1
-          ),
-        });
-      } else if (sortKey !== "mark" && !sortByAsc) {
-        setFilteredData({
-          ...data,
-          cars: data.cars.sort((a, b) =>
-            (a.tariffs[sortKey] ? a.tariffs[sortKey].year : 0) >
-            (b.tariffs[sortKey] ? b.tariffs[sortKey].year : 0)
-              ? -1
-              : 1
-          ),
-        });
-      }
-    }
-  }, [data, sortByAsc, sortKey]);
 
   return (
     <div className="table">
@@ -132,12 +63,11 @@ export const Table: React.FC<TableProps> = (props) => {
         {data && (
           <>
             <div className="table__title" onClick={() => onTitleClick("mark")}>
-              Марка и модель{" "}
+              Марка и модель
               <SortControl
                 sortBy={
                   sortKey === "mark" ? (sortByAsc ? "asc" : "desc") : null
                 }
-                onSort={() => {}}
               />
             </div>
             {data.tariffsList.map((el) => (
@@ -155,7 +85,6 @@ export const Table: React.FC<TableProps> = (props) => {
                         : "desc"
                       : null
                   }
-                  onSort={() => {}}
                 />
               </div>
             ))}
@@ -165,7 +94,10 @@ export const Table: React.FC<TableProps> = (props) => {
       {filteredData &&
         filteredData.cars.map((el) => (
           <div className="table__row" key={`${el.mark} ${el.model}`}>
-            <div className="table__cell">{`${el.mark} ${el.model}`}</div>
+            <div
+              className="table__cell"
+              onClick={() => props.onChooseCar(el, 0)}
+            >{`${el.mark} ${el.model}`}</div>
             {filteredData.tariffsList.map((tariff) => (
               <div
                 className="table__cell"

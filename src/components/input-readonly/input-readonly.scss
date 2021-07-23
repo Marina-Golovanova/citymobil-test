@@ -1,7 +1,7 @@
 .input-readonly {
   display: flex;
   align-items: center;
-  background: rgba(240, 242, 244, 0.5);
+  background-color: rgb(248 249 250);
   min-height: 46px;
   border: 1px solid #dee5eb;
   box-shadow: inset -1px 0px 0px rgba(198, 209, 221, 0.5);
@@ -11,4 +11,6 @@
   font-weight: 600;
   font-size: 12px;
   color: #7b8395;
+  position: sticky;
+  bottom: 0;
 }

@@ -3,6 +3,7 @@
   align-items: center;
   flex-grow: 1;
   position: relative;
+  z-index: 2;
 
   &__icon {
     position: absolute;

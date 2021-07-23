@@ -51,7 +51,7 @@ export const MainContent: React.FC = () => {
         text={
           chosenCar?.year
             ? `Выбран автомобиль ${chosenCar.car.mark} ${chosenCar.car.model} ${chosenCar.year} года выпуска`
-            : ""
+            : "Автомобиль не выбран"
         }
       />
     </div>
