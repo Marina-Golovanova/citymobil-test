@@ -1,0 +1,16 @@
+.sort-control {
+  display: none;
+  width: 12px;
+  height: 14px;
+  margin-left: 5px;
+  cursor: pointer;
+}
+
+.asc {
+  display: block;
+  transform: rotate(180deg);
+}
+
+.desc {
+  display: block;
+}
