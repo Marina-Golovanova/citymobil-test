@@ -53,7 +53,7 @@ export const Table: React.FC<TableProps> = (props) => {
       const dir = sortByAsc ? 1 : -1;
 
       return sortKey === "mark"
-        ? (a.mark > b.mark ? 1 : -1) * dir
+        ? (`${a.mark} ${a.model}` > `${b.mark} ${b.model}` ? 1 : -1) * dir
         : ((a.tariffs[sortKey]?.year || 0) > (b.tariffs[sortKey]?.year || 0)
             ? 1
             : -1) * dir;
@@ -63,7 +63,12 @@ export const Table: React.FC<TableProps> = (props) => {
   }, [data, props.search, sortByAsc, sortKey]);
 
   const onTitleClick = async (title: string) => {
-    setSortByAsc(!sortByAsc);
+    if (sortKey === title) {
+      setSortByAsc(!sortByAsc);
+    } else {
+      setSortByAsc(true);
+    }
+
     setSortKey(title);
   };
 
