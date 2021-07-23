@@ -8184,6 +8184,11 @@ pkg-up@3.1.0:
   dependencies:
     find-up "^3.0.0"
 
+placeholder-loading@^0.4.0:
+  version "0.4.0"
+  resolved "https://registry.yarnpkg.com/placeholder-loading/-/placeholder-loading-0.4.0.tgz#bef86521d614ab76bfeff17cb4872f281d023116"
+  integrity sha512-Po3XESQ/rKy9WKJSmHV7xSvW9y7hl8y0YBWG6By6zdiP4xkSPSpYPxbUlL0m3WqMI4oBnt/eQMlRwo9OVgJHVQ==
+
 pnp-webpack-plugin@1.6.4:
   version "1.6.4"
   resolved "https://registry.yarnpkg.com/pnp-webpack-plugin/-/pnp-webpack-plugin-1.6.4.tgz#c9711ac4dc48a685dabafc86f8b6dd9f8df84149"

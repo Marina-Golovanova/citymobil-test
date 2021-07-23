@@ -1,0 +1,16 @@
+@import "~placeholder-loading/dist/css/placeholder-loading.css";
+
+// override placeholder-loading styles
+
+.ph-row .big,
+.ph-row.big div {
+  height: 42px;
+}
+
+.ph-item {
+  padding: 0;
+}
+
+.ph-item > * {
+  padding: 0;
+}

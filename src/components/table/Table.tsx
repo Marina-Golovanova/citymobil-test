@@ -3,6 +3,7 @@ import { useToasts } from "react-toast-notifications";
 import { api } from "../../api";
 import { Data, Car } from "../../type";
 import { SortControl } from "../sort-control/SortControl";
+import { Loader } from "../loader/Loader";
 
 import "./table.scss";
 
@@ -13,6 +14,7 @@ type TableProps = {
 
 export const Table: React.FC<TableProps> = (props) => {
   const [data, setData] = React.useState<Data>();
+  const [isLoading, setIsLoading] = React.useState(false);
   const [sortKey, setSortKey] = React.useState("mark");
   const [sortByAsc, setSortByAsc] = React.useState(true);
   const [filteredData, setFilteredData] = React.useState<Data>();
@@ -20,12 +22,18 @@ export const Table: React.FC<TableProps> = (props) => {
   const { addToast } = useToasts();
 
   React.useEffect(() => {
+    setIsLoading(true);
+
     api
       .getCars()
       .then((res) => {
+        setIsLoading(false);
         setData(res);
       })
-      .catch((e) => addToast(e.message, { appearance: "error" }));
+      .catch((e) => {
+        addToast(e.message, { appearance: "error" });
+        setIsLoading(false);
+      });
   }, [addToast]);
 
   React.useEffect(() => {
@@ -56,6 +64,10 @@ export const Table: React.FC<TableProps> = (props) => {
     setSortByAsc(!sortByAsc);
     setSortKey(title);
   };
+
+  if (isLoading) {
+    return <Loader />;
+  }
 
   return (
     <div className="table">
