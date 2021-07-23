@@ -54,7 +54,9 @@ export const Table: React.FC<TableProps> = (props) => {
 
       return sortKey === "mark"
         ? (a.mark > b.mark ? 1 : -1) * dir
-        : (a.tariffs[sortKey]?.year > b.tariffs[sortKey]?.year ? 1 : -1) * dir;
+        : ((a.tariffs[sortKey]?.year || 0) > (b.tariffs[sortKey]?.year || 0)
+            ? 1
+            : -1) * dir;
     });
 
     setFilteredData(sortedData);
