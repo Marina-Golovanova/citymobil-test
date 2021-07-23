@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/citymobil-test/static/css/main.534c4c5c.chunk.css",
+    "main.js": "/citymobil-test/static/js/main.2541f4e5.chunk.js",
+    "main.js.map": "/citymobil-test/static/js/main.2541f4e5.chunk.js.map",
+    "runtime-main.js": "/citymobil-test/static/js/runtime-main.b655e4fc.js",
+    "runtime-main.js.map": "/citymobil-test/static/js/runtime-main.b655e4fc.js.map",
+    "static/css/2.fcd89420.chunk.css": "/citymobil-test/static/css/2.fcd89420.chunk.css",
+    "static/js/2.f199a1d9.chunk.js": "/citymobil-test/static/js/2.f199a1d9.chunk.js",
+    "static/js/2.f199a1d9.chunk.js.map": "/citymobil-test/static/js/2.f199a1d9.chunk.js.map",
+    "index.html": "/citymobil-test/index.html",
+    "static/css/2.fcd89420.chunk.css.map": "/citymobil-test/static/css/2.fcd89420.chunk.css.map",
+    "static/css/main.534c4c5c.chunk.css.map": "/citymobil-test/static/css/main.534c4c5c.chunk.css.map",
+    "static/js/2.f199a1d9.chunk.js.LICENSE.txt": "/citymobil-test/static/js/2.f199a1d9.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.b655e4fc.js",
+    "static/css/2.fcd89420.chunk.css",
+    "static/js/2.f199a1d9.chunk.js",
+    "static/css/main.534c4c5c.chunk.css",
+    "static/js/main.2541f4e5.chunk.js"
+  ]
+}
